@@ -1,0 +1,46 @@
+.top-header {
+  p {
+    color: $primary;
+  }
+  h5 {
+    font-size: 16px;
+    padding-left: 5px;
+  }
+  .icon {
+    svg {
+      font-size: 33px;
+      margin-top: 29px;
+      padding-right: 3px;
+      color: #333333;
+    }
+  }
+}
+.bottom-navbar {
+  button.navbar-toggler {
+    max-width: 60px;
+    margin: auto;
+    background-color: white;
+    color: black;
+    margin-bottom: 10px;
+  }
+  .me-auto.my-lg-0.nav-item.navbar-nav a {
+    color: white;
+    border-right: 1px solid rgb(26, 23, 23);
+    transition: 0.3s;
+    &:hover {
+      background-color: $primary;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+  }
+
+  @media only screen and (min-width: 988px) {
+    .dropDown {
+      margin-left: 600px;
+    }
+  }
+
+  .dropDown a {
+    border-right: none !important;
+  }
+}

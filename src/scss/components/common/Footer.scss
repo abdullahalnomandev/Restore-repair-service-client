@@ -1,0 +1,60 @@
+.footer {
+  background: url("https://wp.bwlthemes.com/restore_wp/wp-content/uploads/2017/01/footer-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.repair-content {
+  .social-icons a {
+    font-size: 10px;
+  }
+}
+.social-icons a svg {
+  font-size: 36px;
+  background: white;
+  margin-right: 10px;
+  border-radius: 10%;
+  width: 27px;
+  height: 27px;
+}
+
+.social-icons {
+  border-top: 2px solid white;
+  padding-top: 24px;
+  width: 232px;
+}
+.col-md-4.button-info.py-5 input {
+  padding: 10px;
+  border: navajowhite;
+  outline: navajowhite;
+  border: 2px solid #f69323;
+}
+.services ul li {
+  svg {
+    color: #f69323;
+  }
+  list-style: none;
+  font-size: 15px;
+  transition: 0.3s;
+  &:hover {
+    color: #f69323;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+}
+.top-section.container h3 {
+  color: white;
+}
+
+.top-header-part {
+  background: #f69323;
+  padding: 20px 10px;
+}
+
+.top-section.container a {
+  color: white;
+  font-size: 21px;
+  font-weight: 600;
+  border-bottom: 2px solid white;
+  border-top: 2px solid white;
+  padding: 2px 0px;
+}

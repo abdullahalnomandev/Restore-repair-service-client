@@ -1,0 +1,56 @@
+.testimonial {
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+}
+.testimonial-content.col-md-12 img {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  top: -15%;
+  position: absolute;
+  left: 35%;
+  border-radius: 100%;
+}
+.content.text-center.test-content .review-header {
+  height: 10%;
+  margin-top: -100px;
+}
+@media screen and (min-width: 748px) {
+  .testimonial-content.col-md-12 .review-header b {
+    margin-top: -56px;
+    position: absolute;
+    bottom: 62px;
+    left: 0;
+  }
+}
+
+@media screen and (max-width: 748px) {
+  .testimonial-content.col-md-12 .review-header b {
+    margin-top: -137px;
+    position: absolute;
+    bottom: -23px;
+    left: 0;
+  }
+}
+@media screen and (max-width: 483px) {
+  .testimonial {
+    display: none;
+  }
+}
+
+.swiper-slide {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}

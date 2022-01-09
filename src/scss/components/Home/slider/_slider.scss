@@ -1,0 +1,27 @@
+.carousel-caption {
+  bottom: 12.25rem;
+  text-align: left;
+}
+
+@media only screen and (max-width: 988px) {
+  .carousel-caption {
+    bottom: 0.25rem;
+    text-align: left;
+  }
+}
+.carosal-item {
+  h1 {
+    font-size: 72px;
+    font-weight: 800;
+    padding-bottom: 20px;
+  }
+  p {
+    font-size: 19px;
+    font-family: arial;
+    padding: 10px 0px;
+  }
+  button.sub-secondary-button {
+    margin-right: 15px;
+    margin-bottom: 10px;
+  }
+}
