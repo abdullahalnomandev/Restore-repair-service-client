@@ -45,7 +45,9 @@ const Book = () => {
             <form onSubmit={handleSubmit(onSubmit)} className=" py-5 px-5">
               <div className="row pb-4 d-flex justify-content-center align-items-center">
                 <div className="col-md-9">
-                  <h6 className="text-left">Service Name</h6>
+                  <h6 className="text-left">
+                    Service Name <span className="red">*</span>
+                  </h6>
                   <select className="form-select" {...register("serviceName")}>
                     <option selected>{selectedServices.name}</option>
 
@@ -68,26 +70,34 @@ const Book = () => {
                     value={auth.email}
                   />
                   {errors.email && (
-                    <span className="red"> E-mail is required</span>
+                    <span className="red">
+                      {" "}
+                      E-mail is required <span className="red">*</span>
+                    </span>
                   )}
                 </div>
                 <div className="col-md-6">
-                  <p>Telephone/Mobile</p>
+                  <p>
+                    Telephone/Mobile <span className="red">*</span>
+                  </p>
                   <input
                     className="form-control"
                     {...register("phone", { required: true })}
-                    placeholder="Phone"
-                    required
+                    placeholder="Phone/Telephone"
                   />
                   {errors.phone && (
-                    <span className="phone red">Phone number is required</span>
+                    <span className="phone red">
+                      Phone number is required <span className="red">*</span>
+                    </span>
                   )}
                 </div>
               </div>
 
               <div className="row pb-4 d-flex justify-content-center align-items-center">
                 <div className="col-md-8">
-                  <p>Gender</p>
+                  <p>
+                    Gender <span className="red">*</span>
+                  </p>
                   <select className="form-select" {...register("Gender")}>
                     <option selected>Male</option>
                     <option value="female">Female</option>
@@ -95,7 +105,9 @@ const Book = () => {
                   </select>
                 </div>
                 <div className="col-md-4 ">
-                  <p>Book on your favorite day</p>
+                  <p>
+                    Book on your favorite day <span className="red">*</span>
+                  </p>
                   <Controller
                     control={control}
                     name="booking-date"

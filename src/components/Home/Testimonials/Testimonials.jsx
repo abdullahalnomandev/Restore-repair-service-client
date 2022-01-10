@@ -5,61 +5,15 @@ import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
+import useAsync from "../../../hooks/useAsync";
+import { clientsReview } from "../../../services/reviewItems";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
 const Testimonials = () => {
-  const clients = [
-    {
-      name: "Abdullah Al Noman",
-      img: "https://i.ibb.co/jLk5rtx/jpg.jpg",
-      star: "4",
-      content:
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-    {
-      name: "Abdullah ",
-      img: "https://i.ibb.co/jLk5rtx/jpg.jpg",
-      star: "5",
-      content:
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-    {
-      name: " Noman",
-      img: "https://i.ibb.co/jLk5rtx/jpg.jpg",
-      star: "5",
-      content:
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-    {
-      name: "Abdullah Al Noman",
-      img: "https://i.ibb.co/jLk5rtx/jpg.jpg",
-      star: 5,
-      content:
-        " Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-    {
-      name: "Abdullah ",
-      img: "https://wp.bwlthemes.com/restore_wp/wp-content/uploads/2016/11/team_7-1.jpg",
-      star: 2,
-      content:
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-    {
-      name: " Noman",
-      img: "https://i.ibb.co/jLk5rtx/jpg.jpg",
-      star: 4,
-      content:
-        "    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat non   maiores reiciendis sed totam. Laborum!     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat nonmaiores reiciendis sed totam. Laborum!",
-      email: "noman@gmail.com",
-    },
-  ];
+  const { data: reviews } = useAsync(clientsReview.getReview);
+  console.log("data", reviews);
 
   return (
     <div className="container-fluid row testimonial">
@@ -79,7 +33,7 @@ const Testimonials = () => {
           }}
           className="mySwiper"
         >
-          {clients.map((client) => (
+          {reviews?.map((client) => (
             <SwiperSlide
               style={{
                 backgroundColor: "rgb(247 247 247)",
@@ -88,16 +42,13 @@ const Testimonials = () => {
             >
               <div className="testimonial-content col-md-12">
                 <div className="">
-                  <img src={client.img} alt="" />
+                  <img src={client.image} alt="" />
                 </div>
                 <div className="content text-center test-content">
                   <div className="review-header">
                     <h6>{client.name}</h6>
-                    <Rating defaultValue={client.star} />
-                    <b>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Necessitatibus modi, repudiandae veniam nesciunt, dolorum
-                    </b>
+                    <Rating defaultValue={client.review} />
+                    <b>{client.description}</b>
                   </div>
                 </div>
               </div>

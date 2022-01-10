@@ -66,3 +66,19 @@ body {
 .red {
   color: red;
 }
+button.log-out {
+  border: navajowhite;
+  background: #333333;
+  color: red;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: unset;
+  transform: 0.3s;
+  &:hover {
+    background: red;
+    color: #333333;
+    transition: 0.3s;
+  }
+}
