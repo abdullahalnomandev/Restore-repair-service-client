@@ -2,3 +2,19 @@
   text-align: center;
   margin-top: -35px;
 }
+.google-button {
+  text-align: center;
+}
+.google-button .g-btn {
+  outline: none;
+  padding: 10px 84px;
+}
+
+button.g-btn {
+  border: 1px solid #dd7a09;
+  border-radius: 35px;
+}
+button.g-btn svg {
+  width: 82px;
+  font-size: 22px;
+}

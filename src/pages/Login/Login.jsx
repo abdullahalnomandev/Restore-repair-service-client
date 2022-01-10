@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Modal } from "react-bootstrap";
+import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
+import { AllServiceContext } from "../../context/AuthProvider";
+import useFirebase from "../../hooks/useFirebase";
 
 const Login = () => {
   const [show, setShow] = useState(true);
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
   const [isLogIn, SetIsLogin] = useState(true);
+  const { setAuth } = useContext(AllServiceContext);
+
+  const { googleSignIn, authUser } = useFirebase();
+  setAuth(authUser);
 
   return (
     <div>
@@ -87,16 +94,23 @@ const Login = () => {
           </form>
           <div className="bottom-form">
             {isLogIn === true ? (
-              <p className="text-center pt-3 ps-1">
-                Not a member ?{" "}
-                <Link
-                  onClick={() => SetIsLogin(false)}
-                  className="text-primary"
-                  to="/login"
-                >
-                  Sign UP
-                </Link>
-              </p>
+              <>
+                <p className="text-center pt-3 ps-1">
+                  Not a member ?{" "}
+                  <Link
+                    onClick={() => SetIsLogin(false)}
+                    className="text-primary"
+                    to="/login"
+                  >
+                    Sign UP
+                  </Link>
+                </p>
+                <div className="google-button">
+                  <button className="g-btn" onClick={() => googleSignIn()}>
+                    <FcGoogle /> Sign In with google
+                  </button>
+                </div>
+              </>
             ) : (
               <p className="text-center pt-3">
                 Already a member ?{" "}

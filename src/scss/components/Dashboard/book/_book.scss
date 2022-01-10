@@ -1,0 +1,22 @@
+.booking-header {
+  h3 {
+    text-align: center;
+  }
+  background: #f69323;
+  height: 120px;
+  padding-top: 30px;
+  border-bottom: 5px solid #f69323;
+  color: white;
+  color: #333333;
+}
+.booking-header svg {
+  color: white;
+  font-size: 35px;
+  float: left;
+}
+.booking-header img {
+  width: 90px;
+  height: 70px;
+  border-radius: 10px;
+  display: inline;
+}
