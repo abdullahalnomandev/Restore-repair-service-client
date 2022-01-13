@@ -5,7 +5,7 @@ import { AllServiceContext } from "../../../context/AuthProvider";
 
 const Navigation = ({ handleShow }) => {
   const { auth } = useContext(AllServiceContext);
-  console.log(auth);
+
   return (
     <div>
       <Navbar className="mb-2" style={{ boxShadow: "20px 20px 26px #ddd" }}>

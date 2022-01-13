@@ -6,7 +6,6 @@ const instance = axios.create({
     authorization: `Bearer ${sessionStorage.getItem("token")}`
   },
   timeout: 1000,
-
 });
 
 const responseBody = (res) => res.data;
