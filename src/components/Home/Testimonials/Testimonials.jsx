@@ -26,34 +26,44 @@ const Testimonials = () => {
       </div>
       <>
         <Swiper
-          slidesPerView={3}
-          spaceBetween={15}
-          pagination={{
-            clickable: true,
+          effect={"coverflow"}
+          grabCursor={true}
+          centeredSlides={true}
+          slidesPerView={"auto"}
+          coverflowEffect={{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
           }}
+          pagination={true}
           className="mySwiper"
         >
-          {reviews?.map((client) => (
-            <SwiperSlide
-              style={{
-                backgroundColor: "rgb(247 247 247)",
-                borderRadius: "5px",
-              }}
-            >
-              <div className="testimonial-content col-md-12">
-                <div className="">
-                  <img src={client.image} alt="" />
-                </div>
-                <div className="content text-center test-content">
-                  <div className="review-header">
-                    <h6>{client.name}</h6>
-                    <Rating defaultValue={client.review} />
-                    <b>{client.description}</b>
+          <div className="row">
+            {reviews?.map((client) => (
+              <SwiperSlide
+                style={{
+                  backgroundColor: "rgb(247 247 247)",
+                  borderRadius: "5px",
+                }}
+              >
+                <div className="review-header">
+                  <img className="w-25 text-center" src={client.image} alt="" />
+
+                  <div className="review-content">
+                    <div className="star">
+                      <h6>{client.name}</h6>
+                      <Rating defaultValue={client.review} />
+                    </div>
+                    <div className="description w-50">
+                      <p>{client.description}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
+              </SwiperSlide>
+            ))}
+          </div>
         </Swiper>
       </>
     </div>

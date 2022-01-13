@@ -39,6 +39,8 @@ const UpdateServiceModal = ({ service }) => {
           width: "25%",
           fontSize: "110%",
           cursor: "pointer",
+          marginLeft: "10%",
+          float: "left",
         }}
         onClick={handleShow}
       />

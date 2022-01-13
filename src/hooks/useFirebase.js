@@ -22,8 +22,8 @@ const useFirebase = () => {
               newUser.email=user.email
               newUser.image=user.photoURL
               newUser.token=userToken
+              storeAuthToken()
               setAuthUser(newUser)
-        // ...
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -32,6 +32,20 @@ const useFirebase = () => {
         console.log("error",errorMessage,'errMail',email,credential);
       });
   };
+
+  // AUTH token
+
+  const storeAuthToken= ()=>{
+    const auth = getAuth();
+    auth.currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function(idToken) {
+      console.log("idToken",idToken);
+      sessionStorage.setItem('token',idToken)
+    }).catch(function(error) {
+      // Handle error
+      console.log(error);
+    });
+  }
 
   //LOG OUT
 

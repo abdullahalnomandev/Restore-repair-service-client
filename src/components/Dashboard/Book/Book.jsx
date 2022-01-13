@@ -5,7 +5,7 @@ import { Controller, useForm } from "react-hook-form";
 import { FaCalendarAlt } from "react-icons/fa";
 import swal from "sweetalert";
 import { AllServiceContext } from "../../../context/AuthProvider";
-import { repairServices } from "../../../services/bookingServices";
+import { bookingService } from "../../../services/bookingServices";
 
 const Book = () => {
   const { selectedServices, auth } = useContext(AllServiceContext);
@@ -18,7 +18,7 @@ const Book = () => {
   } = useForm();
   const onSubmit = (data, e) => {
     //POST BOOKING
-    repairServices.postBooking(data).then((res) => {
+    bookingService.postBooking(data).then((res) => {
       if (res) {
         e.preventDefault();
         e.target.reset();
@@ -110,7 +110,7 @@ const Book = () => {
                   </p>
                   <Controller
                     control={control}
-                    name="booking-date"
+                    name="bookingDate"
                     render={({ field }) => (
                       <DatePicker
                         placeholderText="Select date"

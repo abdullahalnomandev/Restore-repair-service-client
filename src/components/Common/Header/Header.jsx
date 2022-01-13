@@ -2,6 +2,7 @@ import React from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPhoneFill, BsStopwatch } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -61,10 +62,14 @@ const Header = () => {
           <Navbar.Collapse id="navbarScroll text-center ">
             <div className="text-center">
               <Nav className="me-auto my-lg-0 nav-item ">
-                <Nav.Link href="#action2">ABOUT US</Nav.Link>
+                <Nav.Link as={Link} to="/action" href="#action2">
+                  ABOUT US
+                </Nav.Link>
                 <Nav.Link href="#action2">SERVICES</Nav.Link>
                 <Nav.Link href="#action2">GALLERY</Nav.Link>
-                <Nav.Link href="/dashboard/addService">Dashboard</Nav.Link>
+                <Nav.Link as={Link} to="/dashboard/addService">
+                  Dashboard
+                </Nav.Link>
 
                 <div className="dropDown">
                   <NavDropdown title="LOGIN" id="basic-nav-dropdown">

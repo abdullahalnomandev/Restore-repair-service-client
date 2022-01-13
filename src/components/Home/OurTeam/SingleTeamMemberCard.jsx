@@ -6,7 +6,7 @@ import {
 } from "react-icons/ai";
 const SingleTeamMemberCard = ({ member }) => {
   return (
-    <div className="col-md-3 mb-3">
+    <div className="col-lg-3 col-md-6 col-sm-4 mb-3">
       <div className="card">
         <img style={{ maxHeight: "300px" }} src={member.image} alt="" />
         <div className="content text-center py-2">

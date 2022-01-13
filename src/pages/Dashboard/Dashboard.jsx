@@ -4,7 +4,7 @@ import AddReview from "../../components/Dashboard/AddReview/AddReview";
 import AddService from "../../components/Dashboard/AdminPanel/AddService/AddService";
 import ManageServices from "../../components/Dashboard/AdminPanel/ManageServices/ManageServices";
 import Book from "../../components/Dashboard/Book/Book";
-import BookDetails from "../../components/Dashboard/BookDetails/BookDetails";
+import MyBook from "../../components/Dashboard/MyBook/MyBook";
 import Profile from "../../components/Dashboard/Profile/Profile";
 import Sidebar from "../../components/Dashboard/Sidebar/Sidebar";
 
@@ -24,8 +24,8 @@ const Dashboard = () => {
           <AddReview />
         ) : panel === "manage" ? (
           <ManageServices />
-        ) : panel === "book" ? (
-          <BookDetails />
+        ) : panel === "myBook" ? (
+          <MyBook />
         ) : null}
       </div>
     </main>
