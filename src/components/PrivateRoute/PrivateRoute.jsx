@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { AllServiceContext } from "../../context/AuthProvider";
+import React from "react";
+import useFirebase from "../../hooks/useFirebase";
 import Login from "../../pages/Login/Login";
 
 const PrivateRoute = ({ children }) => {
-  const { auth } = useContext(AllServiceContext);
+  const { authUser } = useFirebase();
 
-  return auth?.email ? children : <Login to="/login" />;
+  return authUser?.email ? children : <Login to="/login" />;
 };
 
 export default PrivateRoute;

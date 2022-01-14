@@ -53,8 +53,14 @@ const Sidebar = () => {
                 </Link>
               </MenuItem>
               <MenuItem icon={<MdManageAccounts />}>
-                <Link to="/dashboard/manage" onClick={handleClose}>
+                <Link to="/dashboard/manageServices" onClick={handleClose}>
                   Manage Services
+                </Link>
+              </MenuItem>
+
+              <MenuItem icon={<MdManageAccounts />}>
+                <Link to="/dashboard/manageBookings" onClick={handleClose}>
+                  Manage Booking
                 </Link>
               </MenuItem>
 

@@ -37,7 +37,20 @@ const MyBook = () => {
                 </h6>
                 <Card.Text>phone:{book.phone}</Card.Text>
                 <div className="text-center"></div>
-                <Button variant="danger">Pending</Button>
+                <Button
+                  style={{
+                    backgroundColor:
+                      book.status === "pending"
+                        ? "red"
+                        : book.status === "done"
+                        ? "green"
+                        : book.status === "onGoing"
+                        ? "yellow"
+                        : null,
+                  }}
+                >
+                  {book.status}
+                </Button>
               </Card.Body>
             </Card>
           </div>

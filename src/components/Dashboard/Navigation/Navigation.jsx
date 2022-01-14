@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Container, Navbar } from "react-bootstrap";
 import { AiOutlineMenu } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 import { AllServiceContext } from "../../../context/AuthProvider";
 
 const Navigation = ({ handleShow }) => {
   const { auth } = useContext(AllServiceContext);
+  const { panel } = useParams();
 
   return (
     <div>
@@ -14,6 +16,7 @@ const Navigation = ({ handleShow }) => {
             <AiOutlineMenu style={{ fontSize: "35px" }} onClick={handleShow} />
           </Navbar.Brand>
           <Navbar.Toggle />
+          <h5 className="pl-5 ml-5 text-center">{panel.split(" ")}</h5>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
               <div className="nav-img">

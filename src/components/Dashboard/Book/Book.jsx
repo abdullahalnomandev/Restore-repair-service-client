@@ -17,6 +17,7 @@ const Book = () => {
     control,
   } = useForm();
   const onSubmit = (data, e) => {
+    data.status = "pending";
     //POST BOOKING
     bookingService.postBooking(data).then((res) => {
       if (res) {

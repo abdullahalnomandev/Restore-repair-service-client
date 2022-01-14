@@ -11,7 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [isLogIn, SetIsLogin] = useState(true);
   const { setAuth } = useContext(AllServiceContext);
-
   const { googleSignIn, authUser } = useFirebase();
   setAuth(authUser);
 

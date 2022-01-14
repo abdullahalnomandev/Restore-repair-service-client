@@ -1,7 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import AddReview from "../../components/Dashboard/AddReview/AddReview";
+import AddAdmin from "../../components/Dashboard/AdminPanel/addAdmin/AddAdmin";
 import AddService from "../../components/Dashboard/AdminPanel/AddService/AddService";
+import ManageBooking from "../../components/Dashboard/AdminPanel/ManageBooking/ManageBooking";
 import ManageServices from "../../components/Dashboard/AdminPanel/ManageServices/ManageServices";
 import Book from "../../components/Dashboard/Book/Book";
 import MyBook from "../../components/Dashboard/MyBook/MyBook";
@@ -22,10 +24,14 @@ const Dashboard = () => {
           <AddService />
         ) : panel === "addReview" ? (
           <AddReview />
-        ) : panel === "manage" ? (
+        ) : panel === "manageServices" ? (
           <ManageServices />
         ) : panel === "myBook" ? (
           <MyBook />
+        ) : panel === "manageBookings" ? (
+          <ManageBooking />
+        ) : panel === "addAdmin" ? (
+          <AddAdmin />
         ) : null}
       </div>
     </main>
