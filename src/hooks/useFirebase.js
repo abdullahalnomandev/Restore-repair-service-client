@@ -12,8 +12,12 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { firebaseConfig } from "../firebase/firebaseConfig";
+import { manageAdmin } from "../services/manageAdmin";
+
 
 const useFirebase = () => {
+
+
   const [authUser, setAuthUser] = useState({
     name: null,
     email: null,
@@ -22,13 +26,19 @@ const useFirebase = () => {
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState(false);
-
+  const [admin, setAdmin] = useState(false);
   const navigate = useNavigate();
-
   console.log("authUser", authUser);
-
   const googleProvider = new GoogleAuthProvider();
   initializeApp(firebaseConfig);
+  console.log("admin",admin);
+
+//CHECK ADMIN 
+manageAdmin.checkAdmin(authUser.email).then((res)=>{
+  setAdmin(res.admin)
+
+})
+
 
   //Register User
 
@@ -177,6 +187,7 @@ const useFirebase = () => {
     signInUser,
     errorMessage,
     successMessage,
+    admin
   };
 };
 

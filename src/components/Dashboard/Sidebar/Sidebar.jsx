@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
-import { AiFillDelete, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineSetting } from "react-icons/ai";
 import { BiMessageSquareAdd } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { FiList } from "react-icons/fi";
+import { GrUserAdmin } from "react-icons/gr";
 import { MdManageAccounts, MdRateReview } from "react-icons/md";
 import { Menu, MenuItem, ProSidebar, SubMenu } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
+import useFirebase from "../../../hooks/useFirebase";
 import Navigation from "../Navigation/Navigation";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const { admin } = useFirebase();
 
   return (
     <div>
@@ -45,37 +49,38 @@ const Sidebar = () => {
                 My Book
               </Link>
             </MenuItem>
+            {admin && (
+              <SubMenu title="Admin panel" icon={<AiOutlineSetting />}>
+                <MenuItem icon={<BiMessageSquareAdd />}>
+                  <Link to="/dashboard/addService" onClick={handleClose}>
+                    Add Services
+                  </Link>
+                </MenuItem>
+                <MenuItem icon={<MdManageAccounts />}>
+                  <Link to="/dashboard/manageServices" onClick={handleClose}>
+                    Manage Services
+                  </Link>
+                </MenuItem>
 
-            <SubMenu title="Admin panel" icon={<AiOutlineSetting />}>
-              <MenuItem icon={<BiMessageSquareAdd />}>
-                <Link to="/dashboard/addService" onClick={handleClose}>
-                  Add Services
-                </Link>
-              </MenuItem>
-              <MenuItem icon={<MdManageAccounts />}>
-                <Link to="/dashboard/manageServices" onClick={handleClose}>
-                  Manage Services
-                </Link>
-              </MenuItem>
+                <MenuItem icon={<MdManageAccounts />}>
+                  <Link to="/dashboard/manageBookings" onClick={handleClose}>
+                    Manage Booking
+                  </Link>
+                </MenuItem>
 
-              <MenuItem icon={<MdManageAccounts />}>
-                <Link to="/dashboard/manageBookings" onClick={handleClose}>
-                  Manage Booking
-                </Link>
-              </MenuItem>
+                <MenuItem icon={<MdRateReview />}>
+                  <Link to="/dashboard/addAdmin" onClick={handleClose}>
+                    Add Admin
+                  </Link>
+                </MenuItem>
 
-              <MenuItem icon={<MdRateReview />}>
-                <Link to="/dashboard/addAdmin" onClick={handleClose}>
-                  Add Admin
-                </Link>
-              </MenuItem>
-
-              <MenuItem icon={<AiFillDelete />}>
-                <Link to="/dashboard/addAdmin" onClick={handleClose}>
-                  Remove Admin
-                </Link>
-              </MenuItem>
-            </SubMenu>
+                <MenuItem icon={<GrUserAdmin />}>
+                  <Link to="/dashboard/manageAdmin" onClick={handleClose}>
+                    Manage Admin
+                  </Link>
+                </MenuItem>
+              </SubMenu>
+            )}
           </Menu>
         </ProSidebar>
       </Offcanvas>

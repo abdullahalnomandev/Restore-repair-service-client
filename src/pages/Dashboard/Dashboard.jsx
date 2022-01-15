@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import AddReview from "../../components/Dashboard/AddReview/AddReview";
 import AddAdmin from "../../components/Dashboard/AdminPanel/addAdmin/AddAdmin";
 import AddService from "../../components/Dashboard/AdminPanel/AddService/AddService";
+import ManageAdmin from "../../components/Dashboard/AdminPanel/ManageAdmin/ManageAdmin";
 import ManageBooking from "../../components/Dashboard/AdminPanel/ManageBooking/ManageBooking";
 import ManageServices from "../../components/Dashboard/AdminPanel/ManageServices/ManageServices";
 import Book from "../../components/Dashboard/Book/Book";
@@ -32,6 +33,8 @@ const Dashboard = () => {
           <ManageBooking />
         ) : panel === "addAdmin" ? (
           <AddAdmin />
+        ) : panel === "manageAdmin" ? (
+          <ManageAdmin />
         ) : null}
       </div>
     </main>
