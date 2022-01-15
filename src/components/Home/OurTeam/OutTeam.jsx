@@ -3,7 +3,7 @@ import SingleTeamMemberCard from "./SingleTeamMemberCard";
 const OutTeam = () => {
   const teamMembers = [
     {
-      name: "Alexender Gary",
+      name: "Abdullah Al Noman",
       title: "CEO & Founder",
       image: "https://i.ibb.co/jLk5rtx/jpg.jpg",
     },
@@ -20,7 +20,7 @@ const OutTeam = () => {
         "https://wp.bwlthemes.com/restore_wp/wp-content/uploads/2016/11/team_6.jpg",
     },
     {
-      name: "John Abraham",
+      name: "Fahima Mahjabin",
       title: "Technical Manager",
       image: "https://i.ibb.co/ky5RV2S/esha.png",
     },

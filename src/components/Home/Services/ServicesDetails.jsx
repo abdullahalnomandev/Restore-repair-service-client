@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { AllServiceContext } from "../../../context/AuthProvider";
 
 const ServicesDetails = ({ service }) => {
-  const { SelectedServices, setSelectedServices } =
-    useContext(AllServiceContext);
-  console.log("selected service", SelectedServices);
+  const { setSelectedServices } = useContext(AllServiceContext);
   const { img, price, name, description } = service;
   return (
     <div className="col-md-6 pb-4">

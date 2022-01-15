@@ -2,34 +2,41 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import swal from "sweetalert";
 import useAsync from "../../../../hooks/useAsync";
+import useFirebase from "../../../../hooks/useFirebase";
 import { bookingService } from "../../../../services/bookingServices";
 const ManageBooking = () => {
   const { data: Bookings } = useAsync(bookingService.getAllBooking);
-
-  console.log("allBooking", Bookings);
+  const { admin } = useFirebase();
 
   const handleBookingDelete = (id, e) => {
-    // Delete Booking
-    console.log(id);
-    bookingService.deleteBooking(id);
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this Product !",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        //DELETE REQUEST
-        bookingService.deleteBooking(id);
-        e.target.parentNode.parentNode.parentNode.style.display = "none";
-      }
-    });
+    if (admin) {
+      // Delete Booking
+      bookingService.deleteBooking(id);
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Product !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          //DELETE REQUEST
+          bookingService.deleteBooking(id);
+          e.target.parentNode.parentNode.parentNode.style.display = "none";
+        }
+      });
+    } else {
+      swal("Sorry!", "You are not allowed to DELETE the book !", "error");
+    }
   };
 
   const handleUpdateStatus = (e, id) => {
-    console.log("updated", e, id);
-    bookingService.updateBooking(id, { status: e });
+    if (admin) {
+      console.log("updated", e, id);
+      bookingService.updateBooking(id, { status: e });
+    } else {
+      swal("Sorry!", "You are not allowed to change status !", "error");
+    }
   };
 
   return (

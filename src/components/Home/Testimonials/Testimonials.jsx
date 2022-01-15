@@ -1,19 +1,14 @@
-// import Swiper core and required modules
-import Rating from "@mui/material/Rating";
+import Rating from "react-rating";
 import SwiperCore, { Pagination } from "swiper";
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useAsync from "../../../hooks/useAsync";
 import { clientsReview } from "../../../services/reviewItems";
-
-// install Swiper modules
 SwiperCore.use([Pagination]);
 
 const Testimonials = () => {
   const { data: reviews } = useAsync(clientsReview.getReview);
-  console.log("data", reviews);
 
   return (
     <div className="container-fluid row testimonial">
@@ -47,6 +42,7 @@ const Testimonials = () => {
                   backgroundColor: "rgb(247 247 247)",
                   borderRadius: "5px",
                 }}
+                key={client._id}
               >
                 <div className="review-header">
                   <img className="w-25 text-center" src={client.image} alt="" />
@@ -54,7 +50,7 @@ const Testimonials = () => {
                   <div className="review-content">
                     <div className="star">
                       <h6>{client.name}</h6>
-                      <Rating defaultValue={client.review} />
+                      <Rating defaultValue={Number(client.review)} />
                     </div>
                     <div className="description w-50">
                       <p>{client.description}</p>

@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import { AiFillDelete } from "react-icons/ai";
 import swal from "sweetalert";
 import useAsync from "../../../../hooks/useAsync";
+import useFirebase from "../../../../hooks/useFirebase";
 import { repairServices } from "../../../../services/repairServices";
 import UpdateServiceModal from "./UpdateServiceModal";
 
@@ -10,25 +11,30 @@ const ManageServices = () => {
   //GET REQUEST
   const { data: services } = useAsync(repairServices.getProduct);
   console.log("services", services);
+  const { admin } = useFirebase();
 
   const handleProductDelete = (id, e) => {
-    swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this Product !",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal("Poof! Your service has been deleted!", {
-          icon: "success",
-        });
-        //DELETE REQUEST
-        repairServices.deleteProduct(id);
-        e.target.parentNode.parentNode.parentNode.parentNode.style.display =
-          "none";
-      }
-    });
+    if (admin) {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Product !",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("Poof! Your service has been deleted!", {
+            icon: "success",
+          });
+          //DELETE REQUEST
+          repairServices.deleteProduct(id);
+          e.target.parentNode.parentNode.parentNode.parentNode.style.display =
+            "none";
+        }
+      });
+    } else {
+      swal("Sorry!", "You are not allowed to DELETE the service !", "error");
+    }
   };
 
   return (

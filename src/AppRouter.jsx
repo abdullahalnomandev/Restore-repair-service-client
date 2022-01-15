@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
+import Loader from "react-js-loader";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 const PrivateRoute = React.lazy(() =>
   import("./components/PrivateRoute/PrivateRoute")
 );
@@ -12,8 +14,15 @@ const AppRouter = () => {
     <>
       <Suspense
         fallback={
-          <div>
-            <h6 className="btn-success text-center">Loading....</h6>
+          <div className={"row"}>
+            <div className={"item text-center"} style={{ marginTop: "20%" }}>
+              <Loader
+                type="bubble-ping"
+                bgColor={"#f69323"}
+                color={"#333333"}
+                size={500}
+              />
+            </div>
           </div>
         }
       >

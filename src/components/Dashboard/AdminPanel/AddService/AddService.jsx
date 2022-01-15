@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { Form, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import swal from "sweetalert";
+import useFirebase from "../../../../hooks/useFirebase";
 import { repairServices } from "../../../../services/repairServices";
 
 const AddService = () => {
   const [imageLoader, setImageLoader] = useState("");
   const [image, setImage] = useState("");
+  const { admin } = useFirebase();
   const {
     register,
     handleSubmit,
@@ -29,19 +31,23 @@ const AddService = () => {
   };
 
   const onSubmit = (data, e) => {
-    data.img = image;
-    //POST Request
-    repairServices.postProduct(data).then((res) => {
-      if (res) {
-        e.preventDefault();
-        e.target.reset();
-        swal({
-          title: "Thanks!",
-          text: "Your service added successfully.GO home to see services",
-          icon: "success",
-        });
-      }
-    });
+    if (admin) {
+      data.img = image;
+      //POST Request
+      repairServices.postProduct(data).then((res) => {
+        if (res) {
+          e.preventDefault();
+          e.target.reset();
+          swal({
+            title: "Thanks!",
+            text: "Your service added successfully.GO home to see services",
+            icon: "success",
+          });
+        }
+      });
+    } else {
+      swal("Sorry!", "You are not allowed to ADD the service !", "error");
+    }
   };
 
   return (

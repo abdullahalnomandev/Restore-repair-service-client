@@ -3,6 +3,7 @@ import { Form, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { FaEdit } from "react-icons/fa";
 import swal from "sweetalert";
+import useFirebase from "../../../../hooks/useFirebase";
 import { repairServices } from "../../../../services/repairServices";
 
 const UpdateServiceModal = ({ service }) => {
@@ -13,22 +14,27 @@ const UpdateServiceModal = ({ service }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const { register, handleSubmit } = useForm();
+  const { admin } = useFirebase();
 
   const onSubmit = (data) => {
     const id = service._id;
     console.log(id, data);
-    //PATCH Request
-    repairServices.updateProduct(id, data).then((res) => {
-      if (res) {
-        handleClose();
-        swal({
-          title: "Thanks!",
-          text: "Your service Updated successfully..",
-          icon: "success",
-        });
-      }
-      repairServices.getProduct();
-    });
+    if (admin) {
+      //PATCH Request
+      repairServices.updateProduct(id, data).then((res) => {
+        if (res) {
+          handleClose();
+          swal({
+            title: "Thanks!",
+            text: "Your service Updated successfully..",
+            icon: "success",
+          });
+        }
+        repairServices.getProduct();
+      });
+    } else {
+      swal("Sorry!", "You are not allowed to UPDATE the service !", "error");
+    }
   };
 
   return (

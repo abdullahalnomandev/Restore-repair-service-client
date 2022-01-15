@@ -24,8 +24,8 @@ const Book = () => {
         e.preventDefault();
         e.target.reset();
         swal({
-          title: `Thanks ${auth.name}`,
-          text: "Your book has been successful",
+          title: `Thanks, ${auth.name}`,
+          text: "Your book has been successful , Let's see your book in my book",
           icon: "success",
         });
       }

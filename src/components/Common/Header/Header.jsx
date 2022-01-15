@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPhoneFill, BsStopwatch } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { AllServiceContext } from "../../../context/AuthProvider";
+import useFirebase from "../../../hooks/useFirebase";
 
 const Header = () => {
+  const { auth } = useContext(AllServiceContext);
+  const { authUser, logOut } = useFirebase();
+
   return (
     <section>
       <div className="container main">
@@ -72,9 +77,60 @@ const Header = () => {
                 </Nav.Link>
 
                 <div className="dropDown">
-                  <NavDropdown title="LOGIN" id="basic-nav-dropdown">
-                    <Nav.Link href="/login">CONTRACT</Nav.Link>
-                  </NavDropdown>
+                  {authUser?.email ? (
+                    <NavDropdown
+                      title={
+                        auth?.image ? (
+                          <img
+                            style={{
+                              width: "30px",
+                              height: "30px",
+                              borderRadius: "100%",
+                              backgroundColor: "white !important",
+                            }}
+                            src={auth?.image}
+                            alt=""
+                          />
+                        ) : (
+                          <img
+                            style={{
+                              width: "30px",
+                              height: "30px",
+                              borderRadius: "100%",
+                              backgroundColor: "white !important",
+                            }}
+                            src="https://static.thenounproject.com/png/17241-200.png"
+                            alt=""
+                          />
+                        )
+                      }
+                      id="basic-nav-dropdown"
+                    >
+                      {/* <Nav.Link href="/login">CONTRACT</Nav.Link> */}
+                      <h6 className="text-center">Abdullah Al Noman</h6>
+
+                      <div className="text-center">
+                        <Link to="/dashboard/profile">
+                          <button className="btn btn-warning px-2 py-1">
+                            View my profile
+                          </button>
+                        </Link>
+
+                        <br />
+                        <br />
+                        <button
+                          className="btn btn-danger px-1 py-0"
+                          onClick={logOut}
+                        >
+                          Log Out
+                        </button>
+                      </div>
+                    </NavDropdown>
+                  ) : (
+                    <Link to="/dashboard/profile">
+                      <button className="btn btn-warning">Login</button>
+                    </Link>
+                  )}
                 </div>
               </Nav>
             </div>

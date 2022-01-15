@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import { Button, FormControl, InputGroup } from "react-bootstrap";
 import { GrUserAdmin } from "react-icons/gr";
+import swal from "sweetalert";
+import useFirebase from "../../../../hooks/useFirebase";
 import { manageAdmin } from "../../../../services/manageAdmin";
 
 const AddAdmin = (e) => {
   const [admin, setAdmin] = useState("");
+  const { admin: adminUser } = useFirebase();
 
   const handleAddAdmin = () => {
-    if (!admin || admin === null || admin === " ") {
-      alert("Please enter right email..");
+    if (adminUser) {
+      if (!admin || admin === null || admin === " ") {
+        alert("Please enter right email..");
+      } else {
+        manageAdmin.postAdmin({ role: "admin", email: admin }).then((res) => {
+          if (res) {
+            alert("Admin Added successfull..");
+          }
+        });
+        setAdmin("");
+      }
     } else {
-      console.log({ role: "admin", email: admin });
-      manageAdmin.postAdmin({ role: "admin", email: admin }).then((res) => {
-        if (res) {
-          alert("Admin Added successfull..");
-        }
-      });
-      setAdmin("");
+      swal("Sorry!", "You are not allowed to MAKE a admin !", "error");
     }
   };
 

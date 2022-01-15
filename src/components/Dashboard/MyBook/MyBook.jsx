@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import "react-loading-skeleton/dist/skeleton.css";
 import { AllServiceContext } from "../../../context/AuthProvider";
 import { bookingService } from "../../../services/bookingServices";
-
 const MyBook = () => {
   const [booking, setBooking] = useState([]);
   const { auth } = useContext(AllServiceContext);
@@ -14,8 +14,9 @@ const MyBook = () => {
 
   return (
     <div className="container">
-      <h1>This is my book</h1>
+      <h1 className="text-center"> MY BOOKING</h1>
       <div className="row">
+        {!booking.length && <h1>Loading</h1>}
         {booking?.map((book) => (
           <div className="col-md-4 mt-2">
             <Card

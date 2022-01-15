@@ -1,13 +1,12 @@
 import React from "react";
-// import Swiper core and required modules
 import SwiperCore, { EffectCoverflow, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// install Swiper modules
 SwiperCore.use([EffectCoverflow, Pagination]);
+
 const Gallery = () => {
   return (
     <>
@@ -19,7 +18,7 @@ const Gallery = () => {
           customers love us. So try us yourself!
         </p>
       </div>
-      <div className="mb-5">
+      <div className="mb-5 gallery">
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

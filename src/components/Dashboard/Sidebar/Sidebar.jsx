@@ -8,15 +8,12 @@ import { GrUserAdmin } from "react-icons/gr";
 import { MdManageAccounts, MdRateReview } from "react-icons/md";
 import { Menu, MenuItem, ProSidebar, SubMenu } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
-import useFirebase from "../../../hooks/useFirebase";
 import Navigation from "../Navigation/Navigation";
 
 const Sidebar = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const { admin } = useFirebase();
 
   return (
     <div>
@@ -49,38 +46,37 @@ const Sidebar = () => {
                 My Book
               </Link>
             </MenuItem>
-            {admin && (
-              <SubMenu title="Admin panel" icon={<AiOutlineSetting />}>
-                <MenuItem icon={<BiMessageSquareAdd />}>
-                  <Link to="/dashboard/addService" onClick={handleClose}>
-                    Add Services
-                  </Link>
-                </MenuItem>
-                <MenuItem icon={<MdManageAccounts />}>
-                  <Link to="/dashboard/manageServices" onClick={handleClose}>
-                    Manage Services
-                  </Link>
-                </MenuItem>
 
-                <MenuItem icon={<MdManageAccounts />}>
-                  <Link to="/dashboard/manageBookings" onClick={handleClose}>
-                    Manage Booking
-                  </Link>
-                </MenuItem>
+            <SubMenu title="Admin panel" icon={<AiOutlineSetting />}>
+              <MenuItem icon={<BiMessageSquareAdd />}>
+                <Link to="/dashboard/addService" onClick={handleClose}>
+                  Add Services
+                </Link>
+              </MenuItem>
+              <MenuItem icon={<MdManageAccounts />}>
+                <Link to="/dashboard/manageServices" onClick={handleClose}>
+                  Manage Services
+                </Link>
+              </MenuItem>
 
-                <MenuItem icon={<MdRateReview />}>
-                  <Link to="/dashboard/addAdmin" onClick={handleClose}>
-                    Add Admin
-                  </Link>
-                </MenuItem>
+              <MenuItem icon={<MdManageAccounts />}>
+                <Link to="/dashboard/manageBookings" onClick={handleClose}>
+                  Manage Booking
+                </Link>
+              </MenuItem>
 
-                <MenuItem icon={<GrUserAdmin />}>
-                  <Link to="/dashboard/manageAdmin" onClick={handleClose}>
-                    Manage Admin
-                  </Link>
-                </MenuItem>
-              </SubMenu>
-            )}
+              <MenuItem icon={<MdRateReview />}>
+                <Link to="/dashboard/addAdmin" onClick={handleClose}>
+                  Add Admin
+                </Link>
+              </MenuItem>
+
+              <MenuItem icon={<GrUserAdmin />}>
+                <Link to="/dashboard/manageAdmin" onClick={handleClose}>
+                  Manage Admin
+                </Link>
+              </MenuItem>
+            </SubMenu>
           </Menu>
         </ProSidebar>
       </Offcanvas>
