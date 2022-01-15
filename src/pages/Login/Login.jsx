@@ -8,11 +8,82 @@ import useFirebase from "../../hooks/useFirebase";
 const Login = () => {
   const [show, setShow] = useState(true);
   const handleShow = () => setShow(true);
+  const [showPassword, setShowPassword] = useState(true);
   const navigate = useNavigate();
   const [isLogIn, SetIsLogin] = useState(true);
   const { setAuth } = useContext(AllServiceContext);
-  const { googleSignIn, authUser } = useFirebase();
+  const {
+    googleSignIn,
+    authUser,
+    registerUser,
+    signInUser,
+    errorMessage,
+    successMessage,
+  } = useFirebase();
   setAuth(authUser);
+  const [error, setError] = useState("");
+
+  const [signINuser, setSignUser] = useState({
+    email: null,
+    password: null,
+    conPass: null,
+    name: null,
+  });
+  // ERROR MESSAGE VALIDATION
+  const handleBlur = (e) => {
+    // setUser({ ...user, [e.target.name]: e.target.value });
+    let isFormValid = true;
+    if (e.target.name === "email") {
+      isFormValid = /\S+@\S+\.\S+/.test(e.target.value);
+    }
+    if (e.target.name === "password") {
+      const isPasswordValid = e.target.value.length > 6;
+      const passwordHasNumber = /\d{1}/.test(e.target.value);
+      isFormValid = isPasswordValid && passwordHasNumber;
+    }
+    if (e.target.name === "conPass") {
+      const isPasswordValid = e.target.value.length > 6;
+      const passwordHasNumber = /\d{1}/.test(e.target.value);
+      isFormValid = isPasswordValid && passwordHasNumber;
+    }
+    if (e.target.name === "name") {
+      isFormValid = true;
+    }
+
+    if (isFormValid) {
+      const newUserInfo = { ...signINuser };
+      newUserInfo[e.target.name] = e.target.value;
+      setSignUser(newUserInfo);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    /// ERROR MESSAGE
+    if (signINuser.password !== signINuser.conPass) {
+      setError("Password don't match.Please enter the correct password.");
+    }
+    if (signINuser.password === signINuser.conPass) {
+      setError("");
+    }
+    if (signINuser.password === null) {
+      setError("Password should be 6 character and at least 1 number 1 string");
+    }
+
+    if (
+      !isLogIn &&
+      signINuser.password === signINuser.conPass &&
+      signINuser.password !== null
+    ) {
+      // Create User
+      registerUser(signINuser.email, signINuser.password, signINuser.name);
+      console.log(signINuser.email, signINuser.password, signINuser.name);
+    }
+    if (isLogIn) {
+      signInUser(signINuser.email, signINuser.password);
+    }
+
+    e.preventDefault();
+  };
 
   return (
     <div>
@@ -30,23 +101,33 @@ const Login = () => {
             <div className="top-form-header">
               <h3>Login</h3>
               <p>Become part of out community.</p>
+              <p className="red">{errorMessage}</p>
             </div>
           ) : (
             <div className="top-form-header">
               <h3>Create an Account </h3>
               <p>Welcome Register form Account.</p>
+              {successMessage && (
+                <h5 style={{ color: "green" }}>
+                  Your Account Created Successfully..
+                </h5>
+              )}
+              <p className="red">{error}</p>
+              <p className="red">{errorMessage}</p>
             </div>
           )}
 
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
             {!isLogIn && (
               <>
                 <input
                   className="form-control"
                   type="name"
                   name="name"
+                  onBlur={handleBlur}
                   id=""
                   placeholder="Write your name..."
+                  required
                 />{" "}
                 <br />
               </>
@@ -55,14 +136,17 @@ const Login = () => {
               className="form-control"
               type="email"
               name="email"
+              onBlur={handleBlur}
               id=""
               placeholder="email"
+              required
             />{" "}
             <br />
             <input
               className="form-control"
-              type="password"
+              type={showPassword ? "password" : "text"}
               name="password"
+              onBlur={handleBlur}
               id=""
               placeholder="Write your password"
             />{" "}
@@ -71,21 +155,27 @@ const Login = () => {
               <>
                 <input
                   className="form-control"
-                  type="conPass"
                   name="conPass"
+                  type={showPassword ? "password" : "text"}
+                  onBlur={handleBlur}
                   id=""
                   placeholder="Write your confirm password"
                 />{" "}
                 <br />
               </>
             )}
-            <input
-              style={{ width: "30px" }}
-              type="checkbox"
-              name="checkbox"
-              id=""
-            />{" "}
-            <span>Show PassWord</span>
+            {!isLogIn && (
+              <div>
+                <input
+                  style={{ width: "30px" }}
+                  type="checkbox"
+                  name="checkbox"
+                  id=""
+                  onChange={(e) => setShowPassword(!showPassword)}
+                />
+                <span>Show password</span>
+              </div>
+            )}
             <br />
             <button className="sub-secondary-button w-100 mt-4">
               {isLogIn ? "LogIn" : "Sign Up"}

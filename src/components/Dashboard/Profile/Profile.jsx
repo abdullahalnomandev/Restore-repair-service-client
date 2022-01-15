@@ -16,7 +16,8 @@ const Profile = () => {
             alt=""
           />
         )}
-        <img src={auth.image} alt="" />
+        {auth.image && <img src={auth.image} alt="" />}
+
         <h3 className="mt-2">{auth.name}</h3>
         <p>{auth.email}</p>
         <div className="mt-3 log-out">

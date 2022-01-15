@@ -1,12 +1,16 @@
 import { initializeApp } from "firebase/app";
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
-  signOut
+  signOut,
+  updateProfile
 } from "firebase/auth";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { firebaseConfig } from "../firebase/firebaseConfig";
 
 const useFirebase = () => {
@@ -16,11 +20,57 @@ const useFirebase = () => {
     image: null,
     token: null,
   });
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false);
 
-  console.log('authUser',authUser);
+  const navigate = useNavigate();
+
+  console.log("authUser", authUser);
 
   const googleProvider = new GoogleAuthProvider();
   initializeApp(firebaseConfig);
+
+  //Register User
+
+  const registerUser = (email, password, name) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        updateName(name)
+        setErrorMessage("");
+        setSuccessMessage(true);
+        navigate("/");
+        console.log(user);
+        // ...
+      })
+
+      .catch((error) => {
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+        setSuccessMessage(false);
+      });
+  };
+  //SIGN IN USER
+
+  const signInUser = (email, password) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        setErrorMessage("");
+        setSuccessMessage(true);
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setSuccessMessage(false);
+        setErrorMessage(errorMessage);
+      });
+  };
+
   // GOOGLE PUP UP SIGN IN
   const googleSignIn = () => {
     const auth = getAuth();
@@ -61,36 +111,49 @@ const useFirebase = () => {
   //     });
   // };
 
- useEffect(()=>{
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribed = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        auth.currentUser
+          .getIdToken(/* forceRefresh */ true)
+          .then(function (idToken) {
+            sessionStorage.setItem("token", idToken);
+            console.log("idToken", idToken);
+          })
+          .catch(function (error) {
+            // Handle error
+            console.log(error);
+          });
 
-  const auth = getAuth();
-  const unsubscribed= onAuthStateChanged(auth, (user) => {
-    if (user) {
-      
-      auth.currentUser
-      .getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
-        sessionStorage.setItem('token',idToken)
-        console.log("idToken", idToken);
+        const newUser = { ...authUser };
+        newUser.name = user.displayName;
+        newUser.email = user.email;
+        newUser.image = user.photoURL;
+        setAuthUser(newUser);
+        // storeAuthToken();
+      } else {
+        setAuthUser({});
+      }
+    });
+    return () => unsubscribed;
+  }, []);
+  //Update User Name
+  const updateName = (updatedName) => {
+    const auth = getAuth();
+    updateProfile(auth.currentUser, {
+      displayName: updatedName
+    })
+      .then(() => {
+        // Profile updated!
+        console.log('user name updated');
       })
-      .catch(function (error) {
-        // Handle error
+      .catch((error) => {
+        // An error occurred
+        // ...
         console.log(error);
       });
-
-      const newUser = { ...authUser };
-      newUser.name = user.displayName;
-      newUser.email = user.email;
-      newUser.image = user.photoURL;
-      setAuthUser(newUser);
-      // storeAuthToken();
-    } else {
-      setAuthUser({})
-    }
-  });
-  return () => unsubscribed;
- },[])
-
+  };
 
   //LOG OUT
 
@@ -110,6 +173,10 @@ const useFirebase = () => {
     googleSignIn,
     logOut,
     authUser,
+    registerUser,
+    signInUser,
+    errorMessage,
+    successMessage,
   };
 };
 
