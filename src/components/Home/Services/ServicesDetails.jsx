@@ -1,12 +1,16 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AllServiceContext } from "../../../context/AuthProvider";
 
 const ServicesDetails = ({ service }) => {
+  AOS.init({ duration: 1000 });
+
   const { setSelectedServices } = useContext(AllServiceContext);
   const { img, price, name, description } = service;
   return (
-    <div className="col-md-6 pb-4">
+    <div className="col-md-6 pb-4" data-aos="flip-left">
       <div className="row service-card ms-2">
         <div className="col-md-4 image p-0">
           <img className="img-fluid" src={img} alt="" />

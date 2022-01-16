@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import axios from "axios";
 import React, { useState } from "react";
 import { Form, Spinner } from "react-bootstrap";
@@ -7,6 +9,7 @@ import useFirebase from "../../../../hooks/useFirebase";
 import { repairServices } from "../../../../services/repairServices";
 
 const AddService = () => {
+  AOS.init({ duration: 1500 });
   const [imageLoader, setImageLoader] = useState("");
   const [image, setImage] = useState("");
   const { admin } = useFirebase();
@@ -18,7 +21,6 @@ const AddService = () => {
 
   const handleImageUpload = (e) => {
     setImageLoader("pending");
-
     const imageFile = e.target.files[0];
     const data = new FormData();
     data.append("file", imageFile);
@@ -51,7 +53,7 @@ const AddService = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-aos="zoom-in">
       <div className="row mt-5">
         <Form
           className=" m-auto p-5 w-75"

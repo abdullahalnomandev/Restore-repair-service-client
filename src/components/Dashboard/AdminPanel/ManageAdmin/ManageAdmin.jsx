@@ -3,10 +3,10 @@ import { Table } from "react-bootstrap";
 import swal from "sweetalert";
 import useAsync from "../../../../hooks/useAsync";
 import { manageAdmin } from "../../../../services/manageAdmin";
+import AdminSkeleton from "../../../../skeletons/AdminSkeleton";
 
 const ManageAdmin = () => {
   const { data: allAdmin } = useAsync(manageAdmin.getAllAdmin);
-
   const handleDeleteAdmin = (id, e) => {
     swal({
       title: "Are you sure?",
@@ -55,6 +55,7 @@ const ManageAdmin = () => {
           </tbody>
         ))}
       </Table>
+      {!allAdmin?.length && <AdminSkeleton />}
     </div>
   );
 };

@@ -15,6 +15,13 @@
     }
   }
 }
+.nav-item {
+  .active {
+    background-color: #dd7a09;
+    cursor: pointer !important;
+  }
+}
+
 .bottom-navbar {
   button.navbar-toggler {
     max-width: 60px;
@@ -36,7 +43,7 @@
 
   @media only screen and (min-width: 988px) {
     .dropDown {
-      margin-left: 600px;
+      margin-left: 550px;
     }
   }
 

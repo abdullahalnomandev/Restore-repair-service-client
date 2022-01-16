@@ -36,7 +36,6 @@ const UpdateServiceModal = ({ service }) => {
       swal("Sorry!", "You are not allowed to UPDATE the service !", "error");
     }
   };
-
   return (
     <div>
       <FaEdit
@@ -50,7 +49,6 @@ const UpdateServiceModal = ({ service }) => {
         }}
         onClick={handleShow}
       />
-
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
           <Modal.Title>

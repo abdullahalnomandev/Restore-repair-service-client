@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AllServiceContext } from "../../../context/AuthProvider";
@@ -6,9 +8,10 @@ import useFirebase from "../../../hooks/useFirebase";
 const Profile = () => {
   const { auth } = useContext(AllServiceContext);
   const { logOut } = useFirebase();
+  AOS.init({ duration: 1500 });
 
   return (
-    <div className="container">
+    <div className="container" data-aos="flip-up">
       <div className="profile text-center">
         {!auth.image && (
           <img

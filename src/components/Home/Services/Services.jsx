@@ -1,15 +1,20 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import React from "react";
 import useAsync from "../../../hooks/useAsync";
 import { repairServices } from "../../../services/repairServices";
+import ServiceSkeleton from "../../../skeletons/ServiceSkeleton";
 import ServicesDetails from "./ServicesDetails";
 
 const Services = () => {
+  // ..
+  AOS.init();
   //GET REQUEST
   const { data: services } = useAsync(repairServices.getProduct);
 
   return (
-    <div className="container services ">
-      <div className="service-header text-center">
+    <div id="services" className="container services">
+      <div data-aos="fade-up" className="service-header text-center">
         <h2>Our Repair Services</h2>
         <p className="text-secondary">
           Any kinds of digital device problem you need fixed. We can help! Check
@@ -17,6 +22,7 @@ const Services = () => {
           what exactly we provide and if it suites your needs.
         </p>
       </div>
+      {!services?.length && <ServiceSkeleton />}
       <div className="row">
         {services?.map((service) => (
           <ServicesDetails service={service} key={service._id} />

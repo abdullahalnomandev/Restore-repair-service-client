@@ -1,3 +1,5 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import React, { useContext } from "react";
 import { Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -6,6 +8,7 @@ import { AllServiceContext } from "../../../context/AuthProvider";
 import { clientsReview } from "../../../services/reviewItems";
 
 const AddReview = () => {
+  AOS.init({ duration: 1500 });
   const { auth } = useContext(AllServiceContext);
   console.log(auth);
   const { name, email, image } = auth;
@@ -14,7 +17,6 @@ const AddReview = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const onSubmit = (data, e) => {
     data.name = name;
     data.email = email;
@@ -33,7 +35,7 @@ const AddReview = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-aos="zoom-in">
       <div className="row mt-5">
         <Form
           className=" m-auto p-5 w-75"

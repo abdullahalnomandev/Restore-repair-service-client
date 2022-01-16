@@ -1,17 +1,18 @@
-import Rating from "react-rating";
+import Rating from "@mui/material/Rating";
 import SwiperCore, { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useAsync from "../../../hooks/useAsync";
 import { clientsReview } from "../../../services/reviewItems";
+import TestiMonialSkeleton from "../../../skeletons/TestiMonialSkeleton";
 SwiperCore.use([Pagination]);
 
 const Testimonials = () => {
   const { data: reviews } = useAsync(clientsReview.getReview);
 
   return (
-    <div className="container-fluid row testimonial">
+    <div className="container-fluid row testimonial " id="review">
       <div className="testimonial-header text-center">
         <h2>CLIENT TESTIMONIALS</h2>
         <p>
@@ -20,6 +21,7 @@ const Testimonials = () => {
         </p>
       </div>
       <>
+        {!reviews?.length && <TestiMonialSkeleton />}
         <Swiper
           effect={"coverflow"}
           grabCursor={true}

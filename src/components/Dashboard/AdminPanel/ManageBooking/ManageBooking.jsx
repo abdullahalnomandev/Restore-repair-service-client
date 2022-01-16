@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import useAsync from "../../../../hooks/useAsync";
 import useFirebase from "../../../../hooks/useFirebase";
 import { bookingService } from "../../../../services/bookingServices";
+import ManageBookingSkeleton from "../../../../skeletons/ManageBookingSkeleton";
 const ManageBooking = () => {
   const { data: Bookings } = useAsync(bookingService.getAllBooking);
   const { admin } = useFirebase();
@@ -53,6 +54,7 @@ const ManageBooking = () => {
             <th style={{ width: "8%" }}>Action</th>
           </tr>
         </thead>
+
         {Bookings?.map((book, index) => (
           <tbody>
             <tr>
@@ -93,6 +95,7 @@ const ManageBooking = () => {
           </tbody>
         ))}
       </Table>
+      {!Bookings?.length && <ManageBookingSkeleton />}
     </div>
   );
 };

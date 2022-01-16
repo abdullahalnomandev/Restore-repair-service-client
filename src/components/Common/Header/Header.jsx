@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { AiFillHome } from "react-icons/ai";
 import { BsFillPhoneFill, BsStopwatch } from "react-icons/bs";
@@ -9,6 +9,15 @@ import useFirebase from "../../../hooks/useFirebase";
 const Header = () => {
   const { auth } = useContext(AllServiceContext);
   const { authUser, logOut } = useFirebase();
+  const [fixedNav, setFixedNav] = useState(false);
+  const fixedNavBar = () => {
+    if (window.scrollY >= 250) {
+      setFixedNav(true);
+    } else {
+      setFixedNav(false);
+    }
+  };
+  window.addEventListener("scroll", fixedNavBar);
 
   return (
     <section>
@@ -60,22 +69,23 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      <div className="bottom-navbar" style={{ background: "#333333" }}>
+      <div
+        className={fixedNav ? "bottom-navbar fixed-top" : "bottom-navbar"}
+        style={{ background: "#333333" }}
+      >
         <Navbar expand="lg" className="container">
           <Navbar.Toggle aria-controls="navbarScroll " />
           <Navbar.Collapse id="navbarScroll text-center ">
             <div className="text-center">
               <Nav className="me-auto my-lg-0 nav-item ">
-                <Nav.Link as={Link} to="/action" href="#action2">
-                  ABOUT US
+                <Nav.Link href="#services">SERVICES</Nav.Link>
+                <Nav.Link href="#gallery">GALLERY</Nav.Link>
+                <Nav.Link href="#review">REVIEW </Nav.Link>
+                <Nav.Link href="#team"> TEAM</Nav.Link>
+                <Nav.Link href="#contract">CONTRACT</Nav.Link>
+                <Nav.Link as={Link} to="/dashboard/chart">
+                  DASHBOARD
                 </Nav.Link>
-                <Nav.Link href="#action2">SERVICES</Nav.Link>
-                <Nav.Link href="#action2">GALLERY</Nav.Link>
-                <Nav.Link as={Link} to="/dashboard/addService">
-                  Dashboard
-                </Nav.Link>
-
                 <div className="dropDown">
                   {authUser?.email ? (
                     <NavDropdown

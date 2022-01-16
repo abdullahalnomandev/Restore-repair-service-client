@@ -9,7 +9,7 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 const Gallery = () => {
   return (
-    <>
+    <div id="gallery">
       <div className="service-header text-center ">
         <h2>Our Repair Gallery</h2>
         <p className="text-secondary">
@@ -120,7 +120,7 @@ const Gallery = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-    </>
+    </div>
   );
 };
 

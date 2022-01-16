@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import useAsync from "../../../../hooks/useAsync";
 import useFirebase from "../../../../hooks/useFirebase";
 import { repairServices } from "../../../../services/repairServices";
+import ManageServiceSkeleton from "../../../../skeletons/ManageServiceSkeleton";
 import UpdateServiceModal from "./UpdateServiceModal";
 
 const ManageServices = () => {
@@ -43,7 +44,6 @@ const ManageServices = () => {
         <thead>
           <tr>
             <th>S.N</th>
-
             <th className="w-25">Service Name</th>
             <th>Price</th>
             <th>image</th>
@@ -79,6 +79,7 @@ const ManageServices = () => {
           </tbody>
         ))}
       </Table>
+      {!services?.length && <ManageServiceSkeleton />}
     </div>
   );
 };

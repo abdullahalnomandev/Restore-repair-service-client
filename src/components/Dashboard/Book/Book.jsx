@@ -6,10 +6,10 @@ import { FaCalendarAlt } from "react-icons/fa";
 import swal from "sweetalert";
 import { AllServiceContext } from "../../../context/AuthProvider";
 import { bookingService } from "../../../services/bookingServices";
+import { sendBookMessage } from "../../../services/sendBookMessage";
 
 const Book = () => {
   const { selectedServices, auth } = useContext(AllServiceContext);
-
   const {
     register,
     handleSubmit,
@@ -17,6 +17,11 @@ const Book = () => {
     control,
   } = useForm();
   const onSubmit = (data, e) => {
+    console.log(data);
+
+    // POST SEND MESSAGE
+    sendBookMessage.postBookMessage(data);
+
     data.status = "pending";
     //POST BOOKING
     bookingService.postBooking(data).then((res) => {

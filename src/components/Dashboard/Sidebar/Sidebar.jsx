@@ -31,6 +31,11 @@ const Sidebar = () => {
         <ProSidebar>
           <Menu iconShape="square">
             <MenuItem icon={<CgProfile />}>
+              <Link to="/" onClick={handleClose}>
+                HOME
+              </Link>
+            </MenuItem>
+            <MenuItem icon={<CgProfile />}>
               <Link to="/dashboard/profile" onClick={handleClose}>
                 My Profile
               </Link>

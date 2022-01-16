@@ -1,9 +1,14 @@
+import AOS from "aos";
+import "aos/dist/aos.css";
 import React, { useContext, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import "react-loading-skeleton/dist/skeleton.css";
 import { AllServiceContext } from "../../../context/AuthProvider";
 import { bookingService } from "../../../services/bookingServices";
+import BookingSkeleton from "../../../skeletons/BookingSkeleton";
+
 const MyBook = () => {
+  AOS.init({ duration: 1500 });
   const [booking, setBooking] = useState([]);
   const { auth } = useContext(AllServiceContext);
   // GET BOOking with JWT
@@ -16,10 +21,11 @@ const MyBook = () => {
     <div className="container">
       <h1 className="text-center"> MY BOOKING</h1>
       <div className="row">
-        {!booking.length && <h1>Loading</h1>}
+        {!booking.length && <BookingSkeleton />}
         {booking?.map((book) => (
           <div className="col-md-4 mt-2">
             <Card
+              data-aos="flip-left"
               style={{
                 border: "2px solid #fcd6ac",
                 boxShadow: "10px 10px 10px #dfcdcd",

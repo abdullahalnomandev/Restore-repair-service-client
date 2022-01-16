@@ -11,7 +11,7 @@ import { MdOutlineArrowRightAlt } from "react-icons/md";
 const Footer = () => {
   return (
     <>
-      <div className="top-header-part">
+      <div className="top-header-part" id="contract">
         <div className="top-section container ">
           <div className="row py-4">
             <div className="col-md-9">

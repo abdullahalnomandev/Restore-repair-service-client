@@ -7,6 +7,7 @@ import ManageAdmin from "../../components/Dashboard/AdminPanel/ManageAdmin/Manag
 import ManageBooking from "../../components/Dashboard/AdminPanel/ManageBooking/ManageBooking";
 import ManageServices from "../../components/Dashboard/AdminPanel/ManageServices/ManageServices";
 import Book from "../../components/Dashboard/Book/Book";
+import ChartDashboard from "../../components/Dashboard/ChartDashboard";
 import MyBook from "../../components/Dashboard/MyBook/MyBook";
 import Profile from "../../components/Dashboard/Profile/Profile";
 import Sidebar from "../../components/Dashboard/Sidebar/Sidebar";
@@ -35,6 +36,8 @@ const Dashboard = () => {
           <AddAdmin />
         ) : panel === "manageAdmin" ? (
           <ManageAdmin />
+        ) : panel === "chart" ? (
+          <ChartDashboard />
         ) : null}
       </div>
     </main>

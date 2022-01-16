@@ -14,9 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { firebaseConfig } from "../firebase/firebaseConfig";
 import { manageAdmin } from "../services/manageAdmin";
 
-
 const useFirebase = () => {
-
   const [authUser, setAuthUser] = useState({
     name: null,
     email: null,
@@ -31,11 +29,10 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
   initializeApp(firebaseConfig);
 
-//CHECK ADMIN 
-manageAdmin.checkAdmin(authUser.email).then((res)=>{
-  setAdmin(res.admin)
-
-})
+  //CHECK ADMIN
+  manageAdmin.checkAdmin(authUser.email).then((res) => {
+    setAdmin(res.admin);
+  });
 
   //Register User
 
@@ -44,7 +41,7 @@ manageAdmin.checkAdmin(authUser.email).then((res)=>{
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        updateName(name)
+        updateName(name);
         setErrorMessage("");
         setSuccessMessage(true);
         navigate("/");
@@ -83,7 +80,6 @@ manageAdmin.checkAdmin(authUser.email).then((res)=>{
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         console.log(result);
-
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -93,18 +89,14 @@ manageAdmin.checkAdmin(authUser.email).then((res)=>{
       });
   };
 
-
-
   useEffect(() => {
     const auth = getAuth();
     const unsubscribed = onAuthStateChanged(auth, (user) => {
-
       if (user) {
         auth.currentUser
           .getIdToken(/* forceRefresh */ true)
           .then(function (idToken) {
             sessionStorage.setItem("token", idToken);
-         
           })
           .catch(function (error) {
             // Handle error
@@ -127,14 +119,13 @@ manageAdmin.checkAdmin(authUser.email).then((res)=>{
   const updateName = (updatedName) => {
     const auth = getAuth();
     updateProfile(auth.currentUser, {
-      displayName: updatedName
+      displayName: updatedName,
     })
       .then(() => {
         // Profile updated!
       })
       .catch((error) => {
         // An error occurred
-
       });
   };
 
@@ -159,7 +150,7 @@ manageAdmin.checkAdmin(authUser.email).then((res)=>{
     signInUser,
     errorMessage,
     successMessage,
-    admin
+    admin,
   };
 };
 

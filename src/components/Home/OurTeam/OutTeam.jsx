@@ -1,5 +1,4 @@
 import SingleTeamMemberCard from "./SingleTeamMemberCard";
-
 const OutTeam = () => {
   const teamMembers = [
     {

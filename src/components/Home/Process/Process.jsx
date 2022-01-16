@@ -7,7 +7,6 @@ const Process = () => {
     { number: "22", firstTitle: "Years ", secondTitle: "Experience" },
     { number: "5750", firstTitle: "Devices ", secondTitle: "Fixing" },
   ];
-
   return (
     <div className="process-part">
       <div className="container my-5 pt-5 ">
