@@ -11,7 +11,6 @@ import UpdateServiceModal from "./UpdateServiceModal";
 const ManageServices = () => {
   //GET REQUEST
   const { data: services } = useAsync(repairServices.getProduct);
-  console.log("services", services);
   const { admin } = useFirebase();
 
   const handleProductDelete = (id, e) => {
@@ -29,8 +28,7 @@ const ManageServices = () => {
           });
           //DELETE REQUEST
           repairServices.deleteProduct(id);
-          e.target.parentNode.parentNode.parentNode.parentNode.style.display =
-            "none";
+          e.target.parentNode.parentNode.parentNode.style.display = "none";
         }
       });
     } else {

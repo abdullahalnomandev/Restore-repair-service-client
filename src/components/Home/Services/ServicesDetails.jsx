@@ -10,7 +10,7 @@ const ServicesDetails = ({ service }) => {
   const { setSelectedServices } = useContext(AllServiceContext);
   const { img, price, name, description } = service;
   return (
-    <div className="col-md-6 pb-4" data-aos="flip-left">
+    <div className="col-md-6 pb-4">
       <div className="row service-card ms-2">
         <div className="col-md-4 image p-0">
           <img className="img-fluid" src={img} alt="" />

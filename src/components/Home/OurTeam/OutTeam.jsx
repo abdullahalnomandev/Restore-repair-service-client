@@ -1,3 +1,4 @@
+import React from "react";
 import SingleTeamMemberCard from "./SingleTeamMemberCard";
 const OutTeam = () => {
   const teamMembers = [
@@ -10,13 +11,13 @@ const OutTeam = () => {
       name: "Mellissa Munoz",
       title: "Chief Engineer",
       image:
-        "https://wp.bwlthemes.com/restore_wp/wp-content/uploads/2016/11/team_7-1.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYIpyKCGyu5oGb0Ah0DDQ0UMiFRitSDX3YlQ&usqp=CAU",
     },
     {
       name: "John Abraham",
       title: "Technical Manager",
       image:
-        "https://wp.bwlthemes.com/restore_wp/wp-content/uploads/2016/11/team_6.jpg",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwz3ZqzFg9nAjyClKAOEqG2o9Z1VP184paCw&usqp=CAU",
     },
     {
       name: "Fahima Mahjabin",
