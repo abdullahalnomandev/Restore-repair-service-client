@@ -15,7 +15,7 @@ const AppRouter = () => {
       <Suspense
         fallback={
           <div className={"row"}>
-            <div className={"item text-center"} style={{ marginTop: "20%" }}>
+            <div className={"item text-center"} style={{ marginTop: "30%" }}>
               <Loader
                 type="bubble-ping"
                 bgColor={"#f69323"}

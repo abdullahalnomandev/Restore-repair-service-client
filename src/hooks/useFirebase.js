@@ -25,7 +25,7 @@ const useFirebase = () => {
   const [successMessage, setSuccessMessage] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  console.log(admin);
+  
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   initializeApp(firebaseConfig);

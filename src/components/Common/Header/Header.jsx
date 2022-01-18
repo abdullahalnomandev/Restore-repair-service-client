@@ -116,8 +116,7 @@ const Header = () => {
                       }
                       id="basic-nav-dropdown"
                     >
-                      {/* <Nav.Link href="/login">CONTRACT</Nav.Link> */}
-                      <h6 className="text-center">Abdullah Al Noman</h6>
+                      <h6 className="text-center">{auth?.name}</h6>
 
                       <div className="text-center">
                         <Link to="/dashboard/profile">

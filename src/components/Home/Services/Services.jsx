@@ -1,16 +1,13 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
 import React from "react";
-import useAsync from "../../../hooks/useAsync";
-import { repairServices } from "../../../services/repairServices";
 import ServiceSkeleton from "../../../skeletons/ServiceSkeleton";
 import ServicesDetails from "./ServicesDetails";
 
-const Services = () => {
+const Services = ({ services }) => {
   // ..
   AOS.init();
   //GET REQUEST
-  const { data: services } = useAsync(repairServices.getProduct);
 
   return (
     <div id="services" className="container services">

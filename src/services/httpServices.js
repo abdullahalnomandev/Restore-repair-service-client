@@ -8,7 +8,6 @@ const instance = axios.create({
 
 });
 
-console.log(process.env.REACT_APP_API)
 
 const responseBody = (res) => res.data;
 export const request = {
